@@ -10,6 +10,12 @@ const double kCanvasInnerOffset = 40.0;
 const Color kBrushBlack = Colors.black;
 const Color kBrushWhite = Colors.white;
 
+const kModelNubmerOutputs = 10;
+
+const Color kBarColor = Colors.blue;
+const Color kBarBackgroundColor = Colors.transparent;
+const double kChartBarWidth = 22;
+
 final Paint kDrawingPaint = Paint()
   ..strokeCap = StrokeCap.square
   ..isAntiAlias = kIsAntiAlias
