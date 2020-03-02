@@ -33,13 +33,44 @@ class _RecognizerScreen extends State<RecognizerScreen> {
               ),
             ),
             Container(
-              padding: EdgeInsets.all(16),
-              color: Colors.green,
-              child: CustomPaint(
-                size: Size(kCanvasSize, kCanvasSize),
-                painter: DrawingPainter(
-                  offsetPoints: points,
+              decoration: new BoxDecoration(
+                border: new Border.all(
+                  width: 3.0,
+                  color: Colors.blue,
                 ),
+              ),
+              child: Builder(
+                builder: (BuildContext context) {
+                  return GestureDetector(
+                    onPanUpdate: (details) {
+                      setState(() {
+                        RenderBox renderBox = context.findRenderObject();
+                        points.add(
+                            renderBox.globalToLocal(details.globalPosition));
+                      });
+                    },
+                    onPanStart: (details) {
+                      setState(() {
+                        RenderBox renderBox = context.findRenderObject();
+                        points.add(
+                            renderBox.globalToLocal(details.globalPosition));
+                      });
+                    },
+                    onPanEnd: (details) {
+                      setState(() {
+                        points.add(null);
+                      });
+                    },
+                    child: ClipRect(
+                      child: CustomPaint(
+                        size: Size(kCanvasSize, kCanvasSize),
+                        painter: DrawingPainter(
+                          offsetPoints: points,
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
             Expanded(
